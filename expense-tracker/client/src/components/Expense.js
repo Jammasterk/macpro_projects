@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     height: 100vh;
     background: #36454f;
     position: absolute;
+    margin-top: 310px
   }
 
   .inner-container {
@@ -41,7 +42,16 @@ const Wrapper = styled.div`
   }
 `;
 
-const Expense = () => {
+const Expense = (props) => {
+  const {
+    date,
+    mortgage,
+    utilities,
+    car,
+    groceries,
+    entertainment,
+    other
+  } = props;
     return (
       <Wrapper>
         <div className="container">
@@ -49,27 +59,25 @@ const Expense = () => {
             <table>
               <tr className="line__items">
                 <th>Date</th>
-                <th>Rent/Mortgage</th>
+                <th>Mortgage / Rent</th>
                 <th>Utilities</th>
                 <th>Groceries</th>
-                <th>Car Expenses</th>
+                <th>Car</th>
                 <th>Entertainment</th>
                 <th>Other</th>
               </tr>
               <tr>
-                <td>2/3/2021</td>
-                <td>$567</td>
-                <td>$127</td>
-                <td>$250</td>
-                <td>$117</td>
-                <td>$75</td>
-                <td>$367</td>
+                <td>{date}</td>
+                <td>${mortgage}</td>
+                <td>${utilities}</td>
+                <td>${groceries}</td>
+                <td>${car}</td>
+                <td>${entertainment}</td>
+                <td>${other}</td>
               </tr>
             </table>
           </div>
-          <div className="total">
-              
-          </div>
+          <div className="total"></div>
         </div>
       </Wrapper>
     );
