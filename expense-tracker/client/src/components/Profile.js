@@ -14,8 +14,12 @@ export default function Profile() {
 
     return (
       <div>
-        <ExpenseForm addExpense={addExpense} /> 
+        <ExpenseForm addExpense={addExpense} />
+        <div style={{marginTop: "1em", position: "absolute"}}>
           <ExpenseList expenses={expenses} />
+
+        </div>
+        
       </div>
     );
 }

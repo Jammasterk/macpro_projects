@@ -5,21 +5,21 @@ import styled from "styled-components"
 const Wrapper = styled.div`
   .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100%;
     background: #36454f;
     position: absolute;
   }
-
   .inner-container {
     width: 90%;
-    height: 140px;
+    height: 340px;
     border-radius: 5px;
     background: #36454f;
     box-shadow: 20px 20px 60px #2e3b43, -20px -20px 60px #3e4f5b;
     margin: 5% auto;
     display: grid;
+    position: relative;
+    z-index: 9
   }
-
   .date {
     color: #dee1ec;
   }
@@ -34,21 +34,19 @@ const Wrapper = styled.div`
   td {
     text-align: center;
   }
-
   th {
     padding-bottom: 1em;
   }
-
   input {
     background: transparent;
     border: none;
     border-bottom: 1px solid #dee1ec;
-    padding-left: .5em;
-    color: #dee1ec
+    padding-left: 0.5em;
+    color: #dee1ec;
   }
-  input:focus{
-      border:none;
-      outline:none
+  input:focus {
+    border: none;
+    outline: none;
   }
   button {
     width: 250px;
@@ -59,10 +57,11 @@ const Wrapper = styled.div`
     border: none;
     background: #36454f;
     box-shadow: 20px 20px 60px #2e3b43, -20px -20px 60px #3e4f5b;
-    border-radius: 10px
+    border-radius: 10px;
+    margin-left: 25px
   }
-  button:focus{
-      outline:none
+  button:focus {
+    outline: none;
   }
 `;
 
@@ -113,6 +112,8 @@ export default function ExpenseForm(props) {
                 <th>Entertainment</th>
                 <th>Other</th>
               </tr>
+              </table>
+              <table>
               <tr>
                 <td>
                   <input className='date' type="date" name="date" value={date} onChange={handleChange}/>
