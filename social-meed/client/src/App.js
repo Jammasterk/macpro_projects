@@ -1,12 +1,11 @@
 import React from 'react'
 import Feed from "./components/Feed"
-import Comment from "./components/Comment"
-import Profile from "./components/Profile"
+import Auth from "./components/Auth"
 
 export default function App() {
     return (
         <div>
-           <Feed /> 
+           <Auth /> 
            
         </div>
     )
