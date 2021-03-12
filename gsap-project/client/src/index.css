@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #3e4a61;
+    width: 100vw
+}
+
+form{
+    background: transparent;
+    /* width: 100vw */
+
+}
