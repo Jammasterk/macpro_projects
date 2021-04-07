@@ -1,0 +1,11 @@
+let dd = {
+    screams: [
+        {
+            userHandle: "user",
+            body: "This is the cream body",
+            createdAt: '2019-03-15T11:46:01.018z'
+            likeCount: 6,
+            commentCount: 2
+        }
+    ]
+}
