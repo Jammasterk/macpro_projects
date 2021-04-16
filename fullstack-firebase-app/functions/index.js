@@ -1,65 +1,24 @@
 const functions = require("firebase-functions");
-const admin = require("firebase-admin")
-const express = require("express")
+const express = require('express')
+const firebase = require('firebase')
 const app = express()
 
-admin.initializeApp()
+const FBAuth = require("./util/fbAuth")
 
-exports.getScreams = functions.https.onRequest((req, res) => {
+// Imported Handlers
 
-})
+const {getAllScreams, postOneScream} = require('./handlers/screams')
+const {signup, login, uploadImage}= require("./handlers/users")
 
-app.get('/screams', (req, res) => {
-        admin
-          .firestore()
-          .collection("screams")
-          .orderBy('createdAt', 'desc')
-          .get()
-          .then((data) => {
-            let screams = [];
-            data.forEach((doc) => {
-              screams.push({
-                  screamId: doc.id,
-                  body: doc.data().body,
-                  userHandle: doc.data().userHandle,
-                  createdAt: doc.data().createdAt
-              });
-            });
-            return res.json(screams);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-})
+// Authorization Routes
 
-app.post('/screams', (req, res) => {
-        if (req.method !== "POST") {
-          return res.status(400).json({ error: "Method not allowed" });
-        }
-        const newScream = {
-          body: req.body.body,
-          userHandle: req.body.userHandle,
-          createdAt: new Date().toISOString(),
-        };
-        admin
-          .firestore()
-          .collection("screams")
-          .add(newScream)
-          .then((doc) => {
-            res.json({ message: `document ${doc.id} created successfully` });
-          })
-          .catch((err) => {
-            res.status(500).json({ error: "Something went wrong" });
-            console.error(err);
-          });
-})
+app.post("/signup", signup)
+app.post('/login', login)
 
+// Scream routes
 
-
-exports.createScream = functions.https.onRequest((req, res) => {
-
-});
-
-// https://baseurl.com/screams !=
+app.get("/screams", getAllScreams)
+app.post("/screams", FBAuth, postOneScream);
+app.post("/user/image", FBAuth, uploadImage)
 
 exports.api = functions.https.onRequest(app)
