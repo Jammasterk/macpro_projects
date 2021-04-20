@@ -28,7 +28,7 @@ const productSchema = new Schema({
 //   user: {
 //     type: Schema.Types.ObjectId,
 //     ref: "Auth",
-//     // required: true,
+//     required: true,
 //   },
 });
 

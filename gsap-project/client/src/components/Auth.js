@@ -1,111 +1,81 @@
-import React, {useState} from 'react'
-import ManFlying from "../assets/pexels-cottonbro-6700092.mp4"
+import React, {useState, useContext} from "react"
+import AuthForm from "./AuthForm"
+import {UserContext} from "../context/UserProvider"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-  video {
-    background: cover;
-    width: 100vw;
-    filter: sepia(50%);
-    height: 100vh;
-  }
-  form {
-    width: 100vw;
-    padding: 1em;
-    height: 450px;
+.toggle__form{
     position: absolute;
-    z-index: 2;
     top: 0;
-    margin-top: 12em;
-  }
-  input {
-    width: 100% !important;
-    background: none;
-    margin: 1em 0;
-  }
-
-  input:focus {
-    color: #fff;
-  }
-
-  a {
-    width: 100%;
-    margin-top: 3em;
-    background: #40514e;
-  }
-  .input-field {
-    background: none;
-    width: 100%;
-    margin: 1.5em 0;
-  }
-  .row {
+    z-index: 3;
+    margin-top: 500px;
     background: transparent;
-    width: 100%;
-  }
-  label {
-    background: transparent;
-    /* margin: .5em 0; */
-  }
-  p {
-    background: transparent;
-    margin-top: 1em;
-    color: #fff;
-    width: 70%;
-  }
-  span {
-    background: transparent;
-    display: inline;
-    width: 70%;
-  }
-`;
+    margin-left: 1.5em;
+    color: #000;
+    width: auto
+    
+}
+`
 
-export default function Auth() {
+const initInputs = {username: "", password: ""}
 
-    const [password, setPassword] = useState(false)
 
-    function toggle(){
-        setPassword(!password)
+function Auth(props){
+    const [inputs, setInputs] = useState(initInputs)
+    const [toggle, setToggle] = useState(false)
+
+    const {signup, login, errMsg, resetAuthErr} = useContext(UserContext)
+
+    function handleChange(e){
+        const {name, value} = e.target
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            [name]: value
+        }))
+    }
+
+    function handleSignup(e){
+        e.preventDefault()
+        signup(inputs)
+    }
+
+    function handleLogin(e){
+        e.preventDefault()
+        login(inputs)
+    }
+
+    function toggleForm(){
+        setToggle((prev) => !prev)
+        resetAuthErr()
     }
 
     return (
       <Wrapper>
-        <div>
-          <video autoPlay muted loop>
-            <source type="video/mp4" src={ManFlying} />
-          </video>
-          <form action="">
-            <div className="row">
-                <div className="input-field">
-                  <input
-                    id="email"
-                    type="text"
-                    className="validate"
-                    
-                  />
-                  <label htmlFor="email">Email</label>
-                  </div>
-                  <div className="input-field">
-                    <input
-                      id="password"
-                     type={password ? "text" : "password"}
-                      className="validate"
-                      style={{color: "#fff"}}
-                      
-                    />
-                    <label htmlFor="password">Password</label>
-                    <p>
-                      <label>
-                        <input onClick={toggle} type="checkbox" />
-                        <span>{password ? "Hide" : "Show"} Password</span>
-                      </label>
-                    </p>
-                    <a href="/" className="waves-effect waves-light btn">
-                      SIGNUP
-                    </a>
-                </div>
-              </div>
-          </form>
-        </div>
+        {!toggle ? (
+          <>
+            <AuthForm
+              handleSubmit={handleSignup}
+              handleChange={handleChange}
+              inputs={inputs}
+              btnText="SIGNUP"
+              errMsg={errMsg}
+            />
+            <p className="toggle__form" onClick={toggleForm}>Already a member?</p>
+          </>
+        ) : (
+          <>
+            <AuthForm
+              handleSubmit={handleLogin}
+              handleChange={handleChange}
+              inputs={inputs}
+              btnText="LOGIN"
+              errMsg={errMsg}
+            />
+            <p className="toggle__form" onClick={toggleForm}>Not a member?</p>
+          </>
+        )}
       </Wrapper>
     );
 }
+
+export default Auth

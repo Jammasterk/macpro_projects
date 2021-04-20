@@ -1,4 +1,16 @@
 let db = {
+    users:[
+        {
+        userId: 'dhtrhfdsrrter',
+        email: "jaredmanwaring@me.com",
+        handle: "user,
+        createdAt: "2019-03-15T10:59:52.798z"
+        imageUrl: "image.png",
+        bio: "This is my bio",
+        website: "http:/user.com",
+        location: "Denver, CO
+        }
+    ]
     screams: [
         {
             userHandle: "user",
@@ -7,5 +19,12 @@ let db = {
             likeCount: 6,
             commentCount: 2
         }
+    ]
+
+    comments: [
+        userHandle: 'user',
+        screamId: 'hgfdhgfdj453',
+        body: "body text",
+        createdAt: '2021-04-02T21:59:63.679z
     ]
 }

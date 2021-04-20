@@ -6,6 +6,7 @@ const upload = require("../utils/multer");
 const Product = require('../models/productSchema')
 
 
+
 productRouter.get("/", (req, res, next) => {
     Product.find((err, products) => {
         if(err){
@@ -70,7 +71,7 @@ productRouter.delete("/:id", upload.single("image"), async(req, res, next) => {
        await user.remove()
        res.json(user)
    } catch (error) {
-       console.log(error)
+       return res.status(200).send(`Successfuly deleted ${user.productName}`)
    }
 });
 

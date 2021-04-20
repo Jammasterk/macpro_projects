@@ -8,17 +8,24 @@ const FBAuth = require("./util/fbAuth")
 // Imported Handlers
 
 const {getAllScreams, postOneScream} = require('./handlers/screams')
-const {signup, login, uploadImage}= require("./handlers/users")
+const {signup, login, uploadImage, addUserDetails, getAuthenticatedUser}= require("./handlers/users")
 
 // Authorization Routes
 
-app.post("/signup", signup)
-app.post('/login', login)
+
 
 // Scream routes
 
 app.get("/screams", getAllScreams)
 app.post("/screams", FBAuth, postOneScream);
+// app.get('/screams/:screamId', getScream)
+
+// User Routes
+
+app.post("/signup", signup)
+app.post('/login', login)
 app.post("/user/image", FBAuth, uploadImage)
+app.post("/user", FBAuth, addUserDetails)
+app.get('/user', FBAuth, getAuthenticatedUser)
 
 exports.api = functions.https.onRequest(app)
