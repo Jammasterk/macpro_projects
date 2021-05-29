@@ -1,8 +1,8 @@
 module.exports = {
-  apiKey: "AIzaSyBHiROU7HLmcex9CbWjUh4EzDzYcZAjcss",
-  authDomain: "classic-roast.firebaseapp.com",
-  projectId: "classic-roast",
-  storageBucket: "classic-roast.appspot.com",
-  messagingSenderId: "825380827634",
-  appId: "1:825380827634:web:1011016734cf182a46bb6b",
+  apiKey: "AIzaSyBgnDf_w5YS6vVrUY-UfoYMTmFA4RwsUJ4",
+  authDomain: "social-7ea23.firebaseapp.com",
+  projectId: "social-7ea23",
+  storageBucket: "social-7ea23.appspot.com",
+  messagingSenderId: "565440206641",
+  appId: "1:565440206641:web:f07eee68c86392cb6b0210"
 };
