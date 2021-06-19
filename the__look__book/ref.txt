@@ -1,0 +1,11 @@
+fonts: {
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+assets: {
+    jumbotron Image: 
+     author: Olya Prutskova,
+     link: https://www.pexels.com/@olya-prutskova-35454617
+}
