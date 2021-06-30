@@ -35,6 +35,8 @@ export default function App() {
 
     .contain {
       display: flex;
+      position: absolute;
+    //   z-index: -8
     }
 
     img {
